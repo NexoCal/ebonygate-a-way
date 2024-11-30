@@ -56,7 +56,7 @@ func _process(delta):
 		scroll += SCROLL_SPEED+3
 		if scroll >= screen_size.x:
 			scroll = 0
-		$ground.position.x = -scroll + 300 * delta 
+		$ground.position.x = -scroll + 200 * delta 
 		
 		for pipe in pipes:
 			pipe.position.x -= (SCROLL_SPEED + 300) * delta
