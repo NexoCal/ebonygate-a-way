@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch8vnqmgijevm"]
+
+[ext_resource type="Texture2D" uid="uid://c4xi7jcmunba7" path="res://assets/ebony_cat_1.png" id="1_jprku"]
+[ext_resource type="Script" path="res://scripts/cat.gd" id="1_neu2l"]
+[ext_resource type="Texture2D" uid="uid://n4fodfv8f1os" path="res://assets/ebony_cat_2.png" id="2_x7apw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xboa3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jprku")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_x7apw")
+}],
+"loop": true,
+"name": &"running",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0udcw"]
+radius = 20.9974
+height = 78.0846
+
+[node name="cat" type="CharacterBody2D"]
+position = Vector2(178, 633)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_neu2l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_xboa3")
+animation = &"running"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(13, -9)
+rotation = 1.55509
+shape = SubResource("CapsuleShape2D_0udcw")

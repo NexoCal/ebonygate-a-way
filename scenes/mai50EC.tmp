@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cj76kykmf35p7"]
+
+[ext_resource type="Texture2D" uid="uid://6sc3h61p74oh" path="res://assets/somnoire_sky.png" id="1_m5gl7"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_t6k3h"]
+[ext_resource type="PackedScene" uid="uid://ch8vnqmgijevm" path="res://scenes/cat.tscn" id="2_ok7c7"]
+[ext_resource type="PackedScene" uid="uid://bxalfliv8clq1" path="res://scenes/ground.tscn" id="4_4cxex"]
+
+[node name="main" type="Node"]
+script = ExtResource("1_t6k3h")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(256, 416)
+texture = ExtResource("1_m5gl7")
+
+[node name="cat" parent="." instance=ExtResource("2_ok7c7")]
+position = Vector2(317, 415)
+
+[node name="ground" parent="." instance=ExtResource("4_4cxex")]
+
+[node name="pipestime" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="timeout" from="pipestime" to="." method="_on_pipestime_timeout"]

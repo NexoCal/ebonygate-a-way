@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=3 uid="uid://i482xl38gf1r"]
+
+[ext_resource type="Script" path="res://scenes/game_over.gd" id="1_nt86l"]
+[ext_resource type="Texture2D" uid="uid://cnhsphraqudyn" path="res://assets/button_retry.png" id="1_txdde"]
+[ext_resource type="Texture2D" uid="uid://cf7crffu5lvui" path="res://assets/button_retry_hover.png" id="2_mcdd5"]
+[ext_resource type="Texture2D" uid="uid://bn55d75c70oio" path="res://assets/button_retry_pressed.png" id="3_jcvpk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l1t4y"]
+texture = ExtResource("2_mcdd5")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vufe2"]
+texture = ExtResource("3_jcvpk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hfsdr"]
+texture = ExtResource("1_txdde")
+
+[node name="gameOver" type="CanvasLayer"]
+script = ExtResource("1_nt86l")
+
+[node name="restart" type="Button" parent="."]
+offset_left = 156.0
+offset_top = 359.0
+offset_right = 348.0
+offset_bottom = 455.0
+theme_override_styles/hover = SubResource("StyleBoxTexture_l1t4y")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vufe2")
+theme_override_styles/normal = SubResource("StyleBoxTexture_hfsdr")
+
+[connection signal="pressed" from="restart" to="." method="_on_restart_pressed"]

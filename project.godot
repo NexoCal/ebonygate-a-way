@@ -1,0 +1,37 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="EbonyGate-A-Way"
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.3", "Mobile")
+config/icon="res://icon.svg"
+
+[aseprite_importers]
+
+aseprite_executable_path="C:/aseprite/build/bin/aseprite.exe"
+
+[display]
+
+window/size/viewport_width=512
+window/size/viewport_height=832
+
+[dotnet]
+
+project/assembly_name="EbonyGate-A-Way"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/nklbdev.aseprite_importers/plugin.cfg")
+
+[rendering]
+
+renderer/rendering_method="mobile"

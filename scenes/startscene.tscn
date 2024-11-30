@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=3 uid="uid://cewngxb5fdk7q"]
+
+[ext_resource type="Texture2D" uid="uid://0otu6y3ix3d" path="res://assets/button_start_hover.png" id="1_8chrf"]
+[ext_resource type="AudioStream" uid="uid://bcjdrivhtr0ne" path="res://assets/mainmenu.wav" id="1_8w4li"]
+[ext_resource type="Script" path="res://scenes/start.gd" id="1_ney8v"]
+[ext_resource type="Texture2D" uid="uid://vmrtdquowy1l" path="res://assets/button_start_pressed.png" id="2_1fpma"]
+[ext_resource type="Texture2D" uid="uid://rbkcpbao2kwp" path="res://assets/button_start_normal.png" id="3_uiewe"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s5uox"]
+texture = ExtResource("1_8chrf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h42d2"]
+texture = ExtResource("2_1fpma")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nspiw"]
+texture = ExtResource("3_uiewe")
+
+[node name="startscene" type="CanvasLayer"]
+script = ExtResource("1_ney8v")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 156.0
+offset_top = 628.0
+offset_right = 348.0
+offset_bottom = 724.0
+theme_override_styles/hover = SubResource("StyleBoxTexture_s5uox")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h42d2")
+theme_override_styles/normal = SubResource("StyleBoxTexture_nspiw")
+
+[node name="menumusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_8w4li")
+autoplay = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

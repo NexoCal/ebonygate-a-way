@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://cj76kykmf35p7"]
+
+[ext_resource type="Texture2D" uid="uid://6sc3h61p74oh" path="res://assets/somnoire_sky.png" id="1_m5gl7"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_t6k3h"]
+[ext_resource type="PackedScene" uid="uid://bk2l2e7ounrr7" path="res://scenes/pipes.tscn" id="2_2gqqm"]
+[ext_resource type="PackedScene" uid="uid://ch8vnqmgijevm" path="res://scenes/cat.tscn" id="2_ok7c7"]
+[ext_resource type="PackedScene" uid="uid://bxalfliv8clq1" path="res://scenes/ground.tscn" id="4_4cxex"]
+[ext_resource type="PackedScene" uid="uid://i482xl38gf1r" path="res://scenes/game_over.tscn" id="6_4xr15"]
+[ext_resource type="AudioStream" uid="uid://3c5qgyw347s1" path="res://assets/duringgame.wav" id="7_ir8io"]
+[ext_resource type="PackedScene" uid="uid://bpcfndr4v76ep" path="res://scenes/toplimit.tscn" id="8_tqtvq"]
+[ext_resource type="PackedScene" uid="uid://cewngxb5fdk7q" path="res://scenes/startscene.tscn" id="9_dsdii"]
+
+[node name="main" type="Node"]
+script = ExtResource("1_t6k3h")
+pipes_scene = ExtResource("2_2gqqm")
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(256, 416)
+texture = ExtResource("1_m5gl7")
+
+[node name="cat" parent="." instance=ExtResource("2_ok7c7")]
+z_index = 1
+position = Vector2(317, 415)
+
+[node name="ground" parent="." instance=ExtResource("4_4cxex")]
+z_index = 2
+
+[node name="pipestime" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="score" type="Label" parent="."]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -87.0
+offset_right = 87.0
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "SCORE : 0"
+horizontal_alignment = 1
+
+[node name="gameOver" parent="." instance=ExtResource("6_4xr15")]
+
+[node name="bgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ir8io")
+
+[node name="toplimit" parent="." instance=ExtResource("8_tqtvq")]
+
+[node name="startscene" parent="." instance=ExtResource("9_dsdii")]
+
+[connection signal="hit" from="ground" to="." method="_on_ground_hit"]
+[connection signal="timeout" from="pipestime" to="." method="_on_pipestime_timeout"]
+[connection signal="restart" from="gameOver" to="." method="_on_game_over_restart"]
+[connection signal="startGame" from="startscene" to="." method="_on_startscene_start_game"]

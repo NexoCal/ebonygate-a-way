@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://bk2l2e7ounrr7"]
+
+[ext_resource type="Script" path="res://scenes/pipes.gd" id="1_fkopx"]
+[ext_resource type="Texture2D" uid="uid://bv7tcdbhlsagj" path="res://assets/pipe_up.png" id="1_q4cwl"]
+[ext_resource type="Texture2D" uid="uid://ch1dkd2hvdrwi" path="res://assets/pipe_down.png" id="2_3jl0v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyug3"]
+size = Vector2(128, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kveqv"]
+size = Vector2(96, 386)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i04e2"]
+size = Vector2(128, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7y7h"]
+size = Vector2(96, 384)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbrjj"]
+size = Vector2(49.5, 334)
+
+[node name="pipes" type="Area2D" groups=["pipess"]]
+position = Vector2(0, -23)
+script = ExtResource("1_fkopx")
+
+[node name="lower" type="Sprite2D" parent="."]
+position = Vector2(278, 821)
+texture = ExtResource("1_q4cwl")
+
+[node name="lowerUpColl" type="CollisionShape2D" parent="."]
+position = Vector2(278, 629)
+shape = SubResource("RectangleShape2D_eyug3")
+
+[node name="lowerDownColl" type="CollisionShape2D" parent="."]
+position = Vector2(278, 854)
+shape = SubResource("RectangleShape2D_kveqv")
+
+[node name="upper" type="Sprite2D" parent="."]
+position = Vector2(278, 51)
+texture = ExtResource("2_3jl0v")
+
+[node name="upperUpColl" type="CollisionShape2D" parent="."]
+position = Vector2(278, 243)
+shape = SubResource("RectangleShape2D_i04e2")
+
+[node name="upperDownColl" type="CollisionShape2D" parent="."]
+position = Vector2(278, 19)
+shape = SubResource("RectangleShape2D_v7y7h")
+
+[node name="pointarea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pointarea"]
+position = Vector2(277.25, 435)
+shape = SubResource("RectangleShape2D_nbrjj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="pointarea" to="." method="_on_pointarea_body_entered"]
